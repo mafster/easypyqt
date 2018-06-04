@@ -8,10 +8,14 @@ class FieldWidget(basicwidget.BasicWidget):
         super(FieldWidget, self).__init__(vertical=False)
 
         self.label = QtWidgets.QLabel(label)
-        self.textField = QtWidgets.QLineEdit()
+        self.text_field = QtWidgets.QLineEdit()
 
         self.layout.addWidget(self.label)
-        self.layout.addWidget(self.textField)
+        self.layout.addWidget(self.text_field)
+
+    def get_text(self):
+        """ Return text contained in the QLineEdit """
+        return self.text_field.text()
 
 
 if __name__ == '__main__':

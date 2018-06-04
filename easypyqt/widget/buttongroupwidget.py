@@ -3,7 +3,16 @@ from PyQt5 import QtWidgets
 
 
 class ButtonGroupWidget(basicwidget.BasicWidget):
-    
+    """
+    A group of widgets with horizontal or vertical layout.
+
+    EXAMPLE::
+
+            buttonList = [('test1', 'TestONE'), ('test2', 'TestTWO')]
+            fw = ButtonGroupWidget(button_list=buttonList, label='My Test', exclusive=True)
+            fw.show()
+
+    """
     BACKGROUND_GREEN = 'background-color:rgb(70, 200, 120)'
     FONT_GRAY = 'color:rgb(160, 160, 160)'
 
@@ -52,13 +61,14 @@ class ButtonGroupWidget(basicwidget.BasicWidget):
         :return:
         """
         button = self.sender()
-        button.setStyleSheet(self.BACKGROUND_GREEN)
+
 
         if self.exclusive:
-            print('setting button {} to True'.format(button.objectName()))
+
+            button.setStyleSheet(self.BACKGROUND_GREEN)
             button.exclusive = True
+
             for each in [x for x in self.get_all_buttons() if x.objectName() != button.objectName()]:
-                print('setting button {} to False'.format(each.objectName()))
                 each.exclusive = False
                 each.setStyleSheet(self.FONT_GRAY)
 
@@ -70,7 +80,6 @@ class ButtonGroupWidget(basicwidget.BasicWidget):
             raise RuntimeError('This ButtonGroupWidget has not been instantiated with param exclusive = True')
 
         for each in self.get_all_buttons():
-            print('checking button: {}, exclusive: {}'.format(each.objectName(), each.exclusive))
             if each.exclusive:
                 return each
 
