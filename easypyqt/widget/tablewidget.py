@@ -13,8 +13,7 @@ class TableWidget(QtWidgets.QTableWidget):
         self.setColumnCount(columns or 0)
 
         if horizontal_header_list:
-            self.setColumnCount(len(horizontal_header_list))
-            self.setHorizontalHeaderLabels(horizontal_header_list)
+            self.add_horizontal_header_list(horizontal_header_list)
 
         if vertical_header_list:
             rows = len(vertical_header_list)
@@ -27,6 +26,15 @@ class TableWidget(QtWidgets.QTableWidget):
 
         if hide_vertical_header:
             self.verticalHeader().setVisible(False)
+
+    def add_horizontal_header_list(self, header_list):
+        """
+
+        :param header_list:
+        :return:
+        """
+        self.setColumnCount(len(header_list))
+        self.setHorizontalHeaderLabels(header_list)
 
     def get_next_empty_row(self):
         return self.rowCount()
