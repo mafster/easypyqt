@@ -1,4 +1,5 @@
 from PyQt5 import QtWidgets
+import OnionLogger
 
 
 class BasicWidget(QtWidgets.QWidget):
@@ -12,13 +13,15 @@ class BasicWidget(QtWidgets.QWidget):
         self.setContentsMargins(margins[0], margins[1], margins[2], margins[3])
 
         if vertical:
-            self.layout = QtWidgets.QVBoxLayout()
+            self.main_layout = QtWidgets.QVBoxLayout()
         else:
-            self.layout = QtWidgets.QHBoxLayout()
+            self.main_layout = QtWidgets.QHBoxLayout()
 
-        self.layout.setSpacing(2)
-        self.layout.setContentsMargins(0,0,0,0)
-        self.setLayout(self.layout)
+        self.main_layout.setSpacing(2)
+        self.main_layout.setContentsMargins(0,0,0,0)
+        self.setLayout(self.main_layout)
+
+        self.log = OnionLogger.Logger()
 
 
 if __name__ == '__main__':
@@ -28,7 +31,7 @@ if __name__ == '__main__':
 
     wdg = BasicWidget(vertical=False)
     b = QtWidgets.QPushButton('test')
-    wdg.layout.addWidget(b)
+    wdg.main_layout.addWidget(b)
     wdg.show()
 
     sys.exit(app.exec_())

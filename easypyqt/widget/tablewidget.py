@@ -1,4 +1,4 @@
-from PyQt5 import QtWidgets
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class TableWidget(QtWidgets.QTableWidget):
@@ -6,7 +6,7 @@ class TableWidget(QtWidgets.QTableWidget):
 
     """
 
-    def __init__(self, rows=None, columns=None, horizontal_header_list=None, vertical_header_list=None, hide_horizontal_header=False, hide_vertical_header=False):
+    def __init__(self, rows=None, columns=None, horizontal_header_list=None, vertical_header_list=None):
         super(TableWidget, self).__init__()
 
         self.setRowCount(rows or 0)
@@ -14,18 +14,20 @@ class TableWidget(QtWidgets.QTableWidget):
 
         if horizontal_header_list:
             self.add_horizontal_header_list(horizontal_header_list)
-
-        if vertical_header_list:
-            rows = len(vertical_header_list)
-            if rows > self.rowCount():
-                self.setRowCount(rows)
-            self.setHorizontalHeaderLabels(vertical_header_list)
-
-        if hide_horizontal_header:
+        else:
             self.horizontalHeader().setVisible(False)
 
-        if hide_vertical_header:
+        if vertical_header_list:
+            self.add_vertical_header_list(vertical_header_list)
+        else:
             self.verticalHeader().setVisible(False)
+
+        self.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+        self.customContextMenuRequested.connect(self.display_menu)
+
+    def display_menu(self, pos):
+        """ implement menu in subclass """
+        pass
 
     def add_horizontal_header_list(self, header_list):
         """
@@ -35,6 +37,12 @@ class TableWidget(QtWidgets.QTableWidget):
         """
         self.setColumnCount(len(header_list))
         self.setHorizontalHeaderLabels(header_list)
+
+    def add_vertical_header_list(self, header_list):
+        rows = len(header_list)
+        if rows > self.rowCount():
+            self.setRowCount(rows)
+        self.setVerticalHeaderLabels(header_list)
 
     def get_next_empty_row(self):
         return self.rowCount()
@@ -52,6 +60,14 @@ class TableWidget(QtWidgets.QTableWidget):
                 return idx
 
         return None
+
+    def get_all_items_in_column(self, column):
+        items = []
+
+        for row in range(self.rowCount()):
+            items.append(self.item(row, column))
+
+        return items
 
     def add_row(self, data):
         """
@@ -75,7 +91,7 @@ class TableWidget(QtWidgets.QTableWidget):
     def add_row_data(self, data):
         """
         Add multiple rows of data. Dictionary, 2 levels deep.
-        :param data:    *(dict)*
+        :param data:    *(dict(dict))*
         :return:
         """
         for key, value in data.keys():
@@ -100,6 +116,6 @@ if __name__ == '__main__':
     tab = TableWidget(horizontal_header_list=data.keys())
     tab.show()
 
-    tab.add_row_data(data)
+    tab.add_row(data)
 
     sys.exit(app.exec_())
