@@ -13,7 +13,7 @@ class BasicDialog(QtWidgets.QDialog):
         self.setLayout(self.vBoxLayout)
 
         self.vBoxLayout.addWidget(self.basicWidget)
-        self.layout = self.basicWidget.layout
+        self.main_layout = self.basicWidget.layout
 
 
 if __name__ == '__main__':

@@ -8,7 +8,7 @@ class InfoDialog(basicdialog.BasicDialog):
         super(InfoDialog, self).__init__(vertical=vertical)
 
         self.messageLabel = QtWidgets.QLabel(message or '')
-        self.layout.addWidget(self.messageLabel)
+        self.main_layout.addWidget(self.messageLabel)
 
     def pop(self, message=None):
         """

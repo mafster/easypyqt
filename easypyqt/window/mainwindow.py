@@ -4,7 +4,7 @@ from easypyqt.widget import basicwidget
 
 class MainWindow(QtWidgets.QMainWindow):
 
-    def __init__(self, name='mainWindow', title=None, vertical=True, fixedWidth=None, fixedHeight=None):
+    def __init__(self, name=None, title=None, vertical=True, fixedWidth=None, fixedHeight=None):
         """
 
         :param name:
@@ -17,6 +17,10 @@ class MainWindow(QtWidgets.QMainWindow):
         super(MainWindow, self).__init__()
 
         self.title = title
+
+        if name is None:
+            name = 'mainWindow'
+
         self.name = str(name)
 
         # Set object name and window title
@@ -28,7 +32,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.mainWidget = basicwidget.BasicWidget(vertical=vertical)
         self.setCentralWidget(self.mainWidget)
-        self.layout = self.mainWidget.layout  # overrides self.layout builtin method
+        self.main_layout = self.mainWidget.layout  # overrides self.layout builtin method
 
         # fixed heights
         if fixedWidth:

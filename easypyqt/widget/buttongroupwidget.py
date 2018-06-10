@@ -16,7 +16,7 @@ class ButtonGroupWidget(basicwidget.BasicWidget):
     BACKGROUND_GREEN = 'background-color:rgb(70, 200, 120)'
     FONT_GRAY = 'color:rgb(160, 160, 160)'
 
-    def __init__(self, button_list=None, label=None, vertical=True, exclusive=False):
+    def __init__(self, button_list=None, label=None, vertical=False, exclusive=False):
         """
 
         :param button_list:     *(list(tuple))* list of string tuples. [(name, label)]
@@ -32,14 +32,14 @@ class ButtonGroupWidget(basicwidget.BasicWidget):
 
         if label:
             label = QtWidgets.QLabel(label)
-            self.layout.addWidget(label)
+            self.main_layout.addWidget(label)
 
         for each in self.button_list:
             button = QtWidgets.QPushButton(each[1])
             button.setObjectName(each[0])
             button.exclusive = False
             button.clicked.connect(self.button_clicked)
-            self.layout.addWidget(button)
+            self.main_layout.addWidget(button)
 
     def get_all_buttons(self):
         return self.findChildren(QtWidgets.QPushButton)
