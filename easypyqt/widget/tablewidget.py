@@ -1,4 +1,4 @@
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
 
 
 class TableWidget(QtWidgets.QTableWidget):
@@ -24,6 +24,7 @@ class TableWidget(QtWidgets.QTableWidget):
 
         self.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.customContextMenuRequested.connect(self.display_menu)
+        self.horizontalHeader().setStretchLastSection(True)
 
     def display_menu(self, pos):
         """ implement menu in subclass """
@@ -60,6 +61,9 @@ class TableWidget(QtWidgets.QTableWidget):
                 return idx
 
         return None
+
+    def get_header_name_from_column(self, column):
+        return self.horizontalHeaderItem(column).text()
 
     def get_all_items_in_column(self, column):
         items = []

@@ -21,7 +21,9 @@ class BasicWidget(QtWidgets.QWidget):
         self.main_layout.setContentsMargins(0,0,0,0)
         self.setLayout(self.main_layout)
 
-        self.log = OnionLogger.Logger()
+        self.log = OnionLogger.Logger(__name__)
+
+        self.setSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
 
 
 if __name__ == '__main__':
