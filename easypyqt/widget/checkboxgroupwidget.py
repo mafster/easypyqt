@@ -29,7 +29,7 @@ class CheckBoxGroupWidget(basicwidget.BasicWidget):
             cb.setObjectName(item)
 
         cb.stateChanged.connect(self._state_changed)
-        self.main_layout.addWidget(cb)
+        self.basic_layout.addWidget(cb)
 
     def get_all_checkboxes(self):
 

@@ -15,14 +15,14 @@ class CollapsibleWidget(basicwidget.BasicWidget):
         self.panel_widget = basicwidget.BasicWidget(vertical=panel_vertical_layout)
 
         # Layout
-        self.main_layout.addWidget(self.header_widget)
-        self.main_layout.addWidget(self.panel_widget)
+        self.basic_layout.addWidget(self.header_widget)
+        self.basic_layout.addWidget(self.panel_widget)
 
     def add_widget_to_header(self, widget):
-        self.header_widget.main_layout.addWidget(widget)
+        self.header_widget.basic_layout.addWidget(widget)
 
     def add_widget_to_panel(self, widget):
-        self.panel_widget.main_layout.addWidget(widget)
+        self.panel_widget.basic_layout.addWidget(widget)
 
 
 if __name__ == '__main__':
@@ -35,8 +35,9 @@ if __name__ == '__main__':
     #res = worker.ResourceWorker().get_all_resources(project='vfx_test', resource_type='component')
 
     cw= CollapsibleWidget()
-    cw.header_widget.main_layout.addWidget(QtWidgets.QLabel('testo!'))
-    cw.panel_widget.main_layout.addWidget(QtWidgets.QLabel('PANO!!'))
+
+    cw.header_widget.basic_layout.addWidget(QtWidgets.QLabel('testo!'))
+    cw.panel_widget.basic_layout.addWidget(QtWidgets.QLabel('PANO!!'))
     cw.show()
 
     sys.exit(app.exec_())

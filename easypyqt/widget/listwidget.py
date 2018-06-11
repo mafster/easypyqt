@@ -7,8 +7,8 @@ class ListWidget(basicwidget.BasicWidget):
         super(ListWidget, self).__init__(vertical=vertical)
 
     def add_item(self, widget):
-        self.main_layout.addWidget(widget)
+        self.basic_layout.addWidget(widget)
 
     def clear(self):
-        for i in reversed(range(self.main_layout.count())):
-            self.main_layout.itemAt(i).widget().setParent(None)
+        for i in reversed(range(self.basic_layout.count())):
+            self.basic_layout.itemAt(i).widget().setParent(None)

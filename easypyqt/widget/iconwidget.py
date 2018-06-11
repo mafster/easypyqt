@@ -29,7 +29,7 @@ class IconWidget(basicwidget.BasicWidget):
         #self.icon.setGeometry(width, height, 0, 0)
 
         # Layout
-        self.main_layout.addWidget(self.icon)
+        self.basic_layout.addWidget(self.icon)
 
         # Initial
         if os.path.isfile(icon_path):
