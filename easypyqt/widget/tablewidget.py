@@ -135,7 +135,6 @@ if __name__ == '__main__':
 
     tab = TableWidget(horizontal_header_list=dat.keys())
     tab.show()
-
     tab.add_row(dat)
 
     sys.exit(app.exec_())

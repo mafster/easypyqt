@@ -35,6 +35,7 @@ if __name__ == '__main__':
     #res = worker.ResourceWorker().get_all_resources(project='vfx_test', resource_type='component')
 
     cw= CollapsibleWidget()
+
     cw.header_widget.basic_layout.addWidget(QtWidgets.QLabel('testo!'))
     cw.panel_widget.basic_layout.addWidget(QtWidgets.QLabel('PANO!!'))
     cw.show()

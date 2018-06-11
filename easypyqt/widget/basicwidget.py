@@ -33,7 +33,9 @@ if __name__ == '__main__':
 
     wdg = BasicWidget(vertical=False)
     b = QtWidgets.QPushButton('test')
+
     wdg.basic_layout.addWidget(b)
+
     wdg.show()
 
     sys.exit(app.exec_())
