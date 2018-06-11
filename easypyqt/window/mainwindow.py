@@ -32,7 +32,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.mainWidget = basicwidget.BasicWidget(vertical=vertical)
         self.setCentralWidget(self.mainWidget)
-        self.main_layout = self.mainWidget.layout  # overrides self.layout builtin method
+        self.basic_layout = self.mainWidget.layout  # overrides self.layout builtin method
 
         # fixed heights
         if fixedWidth:

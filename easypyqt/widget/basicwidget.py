@@ -13,13 +13,13 @@ class BasicWidget(QtWidgets.QWidget):
         self.setContentsMargins(margins[0], margins[1], margins[2], margins[3])
 
         if vertical:
-            self.main_layout = QtWidgets.QVBoxLayout()
+            self.basic_layout = QtWidgets.QVBoxLayout()
         else:
-            self.main_layout = QtWidgets.QHBoxLayout()
+            self.basic_layout = QtWidgets.QHBoxLayout()
 
-        self.main_layout.setSpacing(2)
-        self.main_layout.setContentsMargins(0,0,0,0)
-        self.setLayout(self.main_layout)
+        self.basic_layout.setSpacing(2)
+        self.basic_layout.setContentsMargins(0,0,0,0)
+        self.setLayout(self.basic_layout)
 
         self.log = OnionLogger.Logger(__name__)
 
@@ -33,7 +33,7 @@ if __name__ == '__main__':
 
     wdg = BasicWidget(vertical=False)
     b = QtWidgets.QPushButton('test')
-    wdg.main_layout.addWidget(b)
+    wdg.basic_layout.addWidget(b)
     wdg.show()
 
     sys.exit(app.exec_())

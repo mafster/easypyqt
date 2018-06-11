@@ -3,15 +3,26 @@ from PyQt5 import QtCore, QtWidgets
 
 class TableWidget(QtWidgets.QTableWidget):
     """
+    A dictionary friendly table widget.
 
+    # TODO: Add support for lists
     """
 
     def __init__(self, rows=None, columns=None, horizontal_header_list=None, vertical_header_list=None):
+        """
+
+        :param rows:                    *(int)* number of rows
+        :param columns:                 *(int)* number of columns.
+        :param horizontal_header_list:  *(list)* list of strings to add as the horizontal header (fields)
+        :param vertical_header_list:    *(list)* list of strings to add as the vertical header (row index)
+        """
         super(TableWidget, self).__init__()
 
+        # Initial rows/columns
         self.setRowCount(rows or 0)
         self.setColumnCount(columns or 0)
 
+        # Headers
         if horizontal_header_list:
             self.add_horizontal_header_list(horizontal_header_list)
         else:
@@ -22,11 +33,12 @@ class TableWidget(QtWidgets.QTableWidget):
         else:
             self.verticalHeader().setVisible(False)
 
+        # Default functionality
         self.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
-        self.customContextMenuRequested.connect(self.display_menu)
+        self.customContextMenuRequested.connect(self.display_right_click_menu)
         self.horizontalHeader().setStretchLastSection(True)
 
-    def display_menu(self, pos):
+    def display_right_click_menu(self, pos):
         """ implement menu in subclass """
         pass
 
@@ -51,6 +63,8 @@ class TableWidget(QtWidgets.QTableWidget):
     def get_column_from_header_name(self, header_name):
         """
         Return the column index with header name matching name passed
+        # IMPORTANT: When checking return value make sure to verify None type as using "if not" will appear False on
+                     column 0 (first column)
 
         :param header_name: *(str)* name of header
         :return:
@@ -75,7 +89,7 @@ class TableWidget(QtWidgets.QTableWidget):
 
     def add_row(self, data):
         """
-        Add a single row of data. Simple dict, 1 level deep
+        Add a single row of data. Simple dict, 1 level deep. Override in subclass for more functionality
         :param data:    *(dict)*
         :return:
         """
@@ -83,14 +97,13 @@ class TableWidget(QtWidgets.QTableWidget):
         self.insertRow(row)
 
         for key, value in data.items():
+            col = self.get_column_from_header_name(header_name=key)
+
+            if col is None:
+                continue
 
             entry_widget = QtWidgets.QTableWidgetItem(str(value))
-            col = self.get_column_from_header_name(header_name=key)
-            if col is None:
-                # TODO: Potentially create a new column?
-                pass
-            else:
-                self.setItem(row, col, entry_widget)
+            self.setItem(row, col, entry_widget)
 
     def add_row_data(self, data):
         """
@@ -100,6 +113,9 @@ class TableWidget(QtWidgets.QTableWidget):
         """
         for key, value in data.keys():
             self.add_row(value)
+
+    def clear(self):
+        self.setRowCount(0)
 
 
 if __name__ == '__main__':
@@ -111,15 +127,15 @@ if __name__ == '__main__':
 
     app = QtWidgets.QApplication(sys.argv)
 
-    data = collections.OrderedDict()
+    dat = collections.OrderedDict()
 
-    data['name'] = 'ball'
-    data['project'] = 'test_project'
-    data['resource_type'] = 'component'
+    dat['name'] = 'ball'
+    dat['project'] = 'test_project'
+    dat['resource_type'] = 'component'
 
-    tab = TableWidget(horizontal_header_list=data.keys())
+    tab = TableWidget(horizontal_header_list=dat.keys())
     tab.show()
 
-    tab.add_row(data)
+    tab.add_row(dat)
 
     sys.exit(app.exec_())

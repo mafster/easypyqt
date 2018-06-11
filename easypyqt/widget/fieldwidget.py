@@ -10,8 +10,8 @@ class FieldWidget(basicwidget.BasicWidget):
         self.label = QtWidgets.QLabel(label)
         self.text_field = QtWidgets.QLineEdit()
 
-        self.main_layout.addWidget(self.label)
-        self.main_layout.addWidget(self.text_field)
+        self.basic_layout.addWidget(self.label)
+        self.basic_layout.addWidget(self.text_field)
 
         if tool_tip:
             self.text_field.setToolTip(str(tool_tip))
