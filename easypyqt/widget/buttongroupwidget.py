@@ -41,6 +41,16 @@ class ButtonGroupWidget(basicwidget.BasicWidget):
             button.clicked.connect(self.button_clicked)
             self.basic_layout.addWidget(button)
 
+    def __getattr__(self, item):
+
+        # Get button by dot notation
+        b = self.get_button_by_name(item)
+
+        if b:
+            return b
+        else:
+            return super(ButtonGroupWidget, self).__getattribute__(item)
+
     def get_all_buttons(self):
         return self.findChildren(QtWidgets.QPushButton)
 
@@ -61,7 +71,6 @@ class ButtonGroupWidget(basicwidget.BasicWidget):
         :return:
         """
         button = self.sender()
-
 
         if self.exclusive:
 

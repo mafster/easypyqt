@@ -4,12 +4,20 @@ from PyQt5 import QtWidgets
 
 class InfoDialog(basicdialog.BasicDialog):
 
-    def __init__(self, message=None, vertical=True, ):
+    def __init__(self, title=None, message=None, vertical=True, auto_exec=False):
         super(InfoDialog, self).__init__(vertical=vertical)
 
-        self.messageLabel = QtWidgets.QLabel(message or '')
+        self.title = title or 'Info'
+        self.message = message or '..'
+
+        self.messageLabel = QtWidgets.QLabel(self.message)
 
         self.basic_layout.addWidget(self.messageLabel)
+
+        self.setWindowTitle(self.title)
+
+        if auto_exec:
+            self.exec_()
 
     def pop(self, message=None):
         """
