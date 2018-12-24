@@ -1,5 +1,6 @@
+from PyQt5 import QtWidgets, QtCore
+
 from easypyqt.widget import basicwidget
-from PyQt5 import QtWidgets
 
 
 class ButtonGroupWidget(basicwidget.BasicWidget):
@@ -15,6 +16,8 @@ class ButtonGroupWidget(basicwidget.BasicWidget):
     """
     BACKGROUND_GREEN = 'background-color:rgb(70, 200, 120)'
     FONT_GRAY = 'color:rgb(160, 160, 160)'
+
+    buttonClicked = QtCore.pyqtSignal(QtWidgets.QPushButton)
 
     def __init__(self, button_list=None, label=None, vertical=False, exclusive=False):
         """
@@ -80,6 +83,8 @@ class ButtonGroupWidget(basicwidget.BasicWidget):
             for each in [x for x in self.get_all_buttons() if x.objectName() != button.objectName()]:
                 each.exclusive = False
                 each.setStyleSheet(self.FONT_GRAY)
+
+        self.buttonClicked.emit(button)
 
     def get_exclusive_button(self):
         """

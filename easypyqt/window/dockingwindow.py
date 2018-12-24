@@ -8,7 +8,7 @@ _DOCK_OPTS |= QtWidgets.QMainWindow.AllowTabbedDocks
 
 class DockingWindow(mainwindow.MainWindow):
 
-    def __init__(self, name='dockingWindow', title=None ):
+    def __init__(self, name='dockingWindow', title=None):
         super(DockingWindow, self).__init__(name=name, title=title)
 
         self.setWindowFlags(QtCore.Qt.Widget)
