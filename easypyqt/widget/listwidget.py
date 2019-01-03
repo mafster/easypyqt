@@ -8,7 +8,7 @@ class ListWidget(basicwidget.BasicWidget):
     def __init__(self, vertical=True):
         super(ListWidget, self).__init__(vertical=vertical)
 
-        #self.basic_layout.setSpacing(0)
+        self.basic_layout.setSpacing(0)
 
     def add_item(self, widget):
         self.basic_layout.addWidget(widget)
@@ -34,6 +34,8 @@ class ScrollableListWidget(basicwidget.BasicWidget):
 
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setWidget(self.listWidget)
+
+        self.listWidget.basic_layout.setAlignment(QtCore.Qt.AlignTop)
 
     def add_item(self, widget):
         """

@@ -3,11 +3,17 @@ from PyQt5 import QtWidgets, QtCore
 
 class DropdownWidget(QtWidgets.QComboBox):
 
-    dropdown_clicked = QtCore.pyqtSignal()
-    text_selected = QtCore.pyqtSignal(str)
+    dropdownClicked = QtCore.pyqtSignal()
+    textSelected = QtCore.pyqtSignal(str)  # Similar to the builtin activated signal but passes text name
 
     def __init__(self):
         super(DropdownWidget, self).__init__()
+
+        self.activated.connect(self._text_selected)
+
+    def _text_selected(self):
+        """ """
+        self.textSelected.emit(self.get_current_selection())
 
     def get_current_selection(self):
         """
@@ -16,5 +22,5 @@ class DropdownWidget(QtWidgets.QComboBox):
         return str(self.currentText())
 
     def showPopup(self):
-        self.dropdown_clicked.emit()
+        self.dropdownClicked.emit()
         super(DropdownWidget, self).showPopup()

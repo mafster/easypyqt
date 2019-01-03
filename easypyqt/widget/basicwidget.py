@@ -19,7 +19,7 @@ class BasicWidget(QtWidgets.QWidget):
             self.basic_layout = QtWidgets.QHBoxLayout()
 
         self.basic_layout.setSpacing(2)
-        self.basic_layout.setContentsMargins(0,0,0,0)
+        self.basic_layout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(self.basic_layout)
 
         self.log = OnionLogger.Logger(__name__)
