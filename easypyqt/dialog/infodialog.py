@@ -1,11 +1,12 @@
-from easypyqt.dialog import basicdialog
 from PyQt5 import QtWidgets
+
+from easypyqt.dialog import basicdialog
 
 
 class InfoDialog(basicdialog.BasicDialog):
 
     def __init__(self, title=None, message=None, vertical=True, auto_exec=False):
-        super(InfoDialog, self).__init__(vertical=vertical)
+        super(InfoDialog, self).__init__(vertical=vertical, auto_exec=False)
 
         self.title = title or 'Info'
         self.message = message or '..'

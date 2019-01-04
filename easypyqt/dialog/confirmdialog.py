@@ -15,7 +15,7 @@ _DEFAULT_BUTTON_LIST = [
 class ConfirmDialog(basicdialog.BasicDialog):
 
     def __init__(self, title=None, message=None, vertical=True, auto_exec=False):
-        super(ConfirmDialog, self).__init__(title=title, vertical=vertical)
+        super(ConfirmDialog, self).__init__(title=title, vertical=vertical, auto_exec=False)
 
         self.title = title or 'Confirm...'
         self.message = message or '..'

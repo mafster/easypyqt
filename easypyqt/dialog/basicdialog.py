@@ -4,12 +4,12 @@ from easypyqt.widget import basicwidget
 
 class BasicDialog(QtWidgets.QDialog):
 
-    def __init__(self, title=None, vertical=True, auto_exec=False):
+    def __init__(self, title=None, vertical=True, width=None, auto_exec=False):
         super(BasicDialog, self).__init__()
 
         self.title = title or ''
 
-        self.result_ = None  # Stores the result() as a string
+        self.result_ = None  # For storing the result() as a string, e.g. "accept"
 
         # Widgets
         self.basicWidget = basicwidget.BasicWidget(vertical=vertical)
@@ -20,6 +20,11 @@ class BasicDialog(QtWidgets.QDialog):
         self.setLayout(self.vBoxLayout)
 
         self.basic_layout = self.basicWidget.layout()
+
+        # Format
+        if width:
+            assert isinstance(width, int)
+            self.basicWidget.setMinimumWidth(width)
 
         self.setWindowTitle(self.title)
 
