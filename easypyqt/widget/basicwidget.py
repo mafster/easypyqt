@@ -1,6 +1,6 @@
-from PyQt5 import QtWidgets
+import logging
 
-import OnionLogger
+from PyQt5 import QtWidgets
 
 
 class BasicWidget(QtWidgets.QWidget):
@@ -22,7 +22,18 @@ class BasicWidget(QtWidgets.QWidget):
         self.basic_layout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(self.basic_layout)
 
-        self.log = OnionLogger.Logger(__name__)
+        self.log = logging.getLogger(self.__repr__())
+
+        # Set logger
+        self.log.setLevel(logging.DEBUG)
+
+        ch = logging.StreamHandler()
+        ch.setLevel(logging.DEBUG)
+
+        fmt = logging.Formatter('%(levelname)s:%(message)s')
+        ch.setFormatter(fmt)
+
+        self.log.addHandler(ch)
 
         self.setSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
 
