@@ -6,8 +6,11 @@ class DropdownWidget(QtWidgets.QComboBox):
     dropdownClicked = QtCore.pyqtSignal()
     textSelected = QtCore.pyqtSignal(str)  # Similar to the builtin activated signal but passes text name
 
-    def __init__(self):
+    def __init__(self, items=None):
         super(DropdownWidget, self).__init__()
+
+        if items:
+            self.addItems(items)
 
         self.activated.connect(self._text_selected)
 
