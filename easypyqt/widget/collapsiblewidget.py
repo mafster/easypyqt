@@ -1,4 +1,5 @@
-from PyQt5 import QtCore, QtWidgets
+from PyQt5 import QtWidgets
+
 from easypyqt.widget import basicwidget
 
 
@@ -30,11 +31,7 @@ if __name__ == '__main__':
 
     app = QtWidgets.QApplication(sys.argv)
 
-    #from unipipe import worker
-
-    #res = worker.ResourceWorker().get_all_resources(project='vfx_test', resource_type='component')
-
-    cw= CollapsibleWidget()
+    cw = CollapsibleWidget()
 
     cw.header_widget.basic_layout.addWidget(QtWidgets.QLabel('testo!'))
     cw.panel_widget.basic_layout.addWidget(QtWidgets.QLabel('PANO!!'))

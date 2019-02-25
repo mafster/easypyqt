@@ -14,12 +14,11 @@ class ButtonGroupWidget(basicwidget.BasicWidget):
             fw.show()
 
     """
-    BACKGROUND_GREEN = 'background-color:rgb(70, 200, 120)'
-    FONT_GRAY = 'color:rgb(160, 160, 160)'
+    FONT_GRAY = 'color: rgb(160, 160, 160)'
 
     buttonClicked = QtCore.pyqtSignal(QtWidgets.QPushButton)
 
-    def __init__(self, button_list=None, label=None, vertical=False, exclusive=False):
+    def __init__(self, button_list=None, label=None, vertical=False, exclusive=False, exclusive_color='#46c878'):
         """
 
         :param button_list:     *(list(tuple))* list of string tuples. [(name, label)]
@@ -27,11 +26,13 @@ class ButtonGroupWidget(basicwidget.BasicWidget):
         :param vertical:        *(bool)* if True will lay buttons out vertically
         :param exclusive:       *(bool)* if True will highlight button clicked and ghost the rest. Button can be accessed
                                 via get_exclusive_button() or get_exclusive_button_name()
+        :param exclusive_color  *(str)* hex colour to use if exclusive option is True
         """
         super(ButtonGroupWidget, self).__init__(vertical=vertical)
 
         self.button_list = button_list or []
         self.exclusive = exclusive
+        self.exclusive_color = exclusive_color
 
         if label:
             label = QtWidgets.QLabel(label)
@@ -77,7 +78,7 @@ class ButtonGroupWidget(basicwidget.BasicWidget):
 
         if self.exclusive:
 
-            button.setStyleSheet(self.BACKGROUND_GREEN)
+            button.setStyleSheet('background-color: {}'.format(self.exclusive_color))
             button.exclusive = True
 
             for each in [x for x in self.get_all_buttons() if x.objectName() != button.objectName()]:
