@@ -26,7 +26,7 @@ class InfoDialog(basicdialog.BasicDialog):
 
     @staticmethod
     def build_error_message(exception):
-        return '\n\nException: \n\n\t{}'.format(str(exception))
+        return '\n\nException:\n\n\tType: {}\n\n\tInfo: {}\n'.format(type(exception), str(exception))
 
     def pop(self, message=None):
         """
