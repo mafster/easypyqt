@@ -10,7 +10,9 @@ class FieldWidget(basicwidget.BasicWidget):
         self.label = QtWidgets.QLabel(label)
         self.text_field = QtWidgets.QLineEdit()
 
-        self.basic_layout.addWidget(self.label)
+        if label:
+            self.basic_layout.addWidget(self.label)
+
         self.basic_layout.addWidget(self.text_field)
 
         if tool_tip:
@@ -25,6 +27,12 @@ class FieldWidget(basicwidget.BasicWidget):
     def get_text(self):
         """ Return text contained in the QLineEdit """
         return self.text_field.text()
+
+    def focus(self):
+        self.text_field.setFocus()
+
+    def clear(self):
+        self.text_field.setText('')
 
     def __getattr__(self, item):
         """ Attempt pass through most calls to the text_field """
