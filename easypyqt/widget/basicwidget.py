@@ -5,8 +5,8 @@ from PyQt5 import QtWidgets
 
 class BasicWidget(QtWidgets.QWidget):
 
-    def __init__(self, vertical=True, margins=None):
-        super(BasicWidget, self).__init__()
+    def __init__(self, vertical=True, margins=None, parent=None):
+        super(BasicWidget, self).__init__(parent=parent)
 
         if margins is None:
             margins = [0, 0, 0, 0]

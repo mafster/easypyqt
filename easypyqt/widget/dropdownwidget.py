@@ -1,3 +1,5 @@
+from typing import Iterable
+
 from PyQt5 import QtWidgets, QtCore
 
 
@@ -6,8 +8,8 @@ class DropdownWidget(QtWidgets.QComboBox):
     dropdownClicked = QtCore.pyqtSignal()
     textSelected = QtCore.pyqtSignal(str)  # Similar to the builtin activated signal but passes text name
 
-    def __init__(self, items=None):
-        super(DropdownWidget, self).__init__()
+    def __init__(self, items: Iterable[str] = None, *args, **kwargs):
+        super(DropdownWidget, self).__init__(*args, **kwargs)
 
         if items:
             self.addItems(items)

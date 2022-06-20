@@ -1,14 +1,18 @@
+from PyQt5.QtWidgets import QLineEdit
+
 from easypyqt.widget import basicwidget
 from PyQt5 import QtWidgets
 
 
 class FieldWidget(basicwidget.BasicWidget):
 
-    def __init__(self, label, default=None, hint=None, tool_tip=None):
+    def __init__(self, label, default=None, hint=None, tool_tip=None, password: bool = False):
         super(FieldWidget, self).__init__(vertical=False)
 
         self.label = QtWidgets.QLabel(label)
         self.text_field = QtWidgets.QLineEdit()
+        if password:
+            self.text_field.setEchoMode(QLineEdit.Password)
 
         if label:
             self.basic_layout.addWidget(self.label)

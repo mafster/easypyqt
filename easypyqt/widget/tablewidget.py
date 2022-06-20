@@ -1,4 +1,5 @@
 from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtCore import QSize
 
 
 class TableWidget(QtWidgets.QTableWidget):
@@ -8,7 +9,7 @@ class TableWidget(QtWidgets.QTableWidget):
     # TODO: Add support for lists
     """
 
-    def __init__(self, rows=None, columns=None, horizontal_header_list=None, vertical_header_list=None):
+    def __init__(self, rows: int = None, columns: int = None, horizontal_header_list: list[str] = None, vertical_header_list: list[str] = None):
         """
 
         :param rows:                    *(int)* number of rows
@@ -18,7 +19,7 @@ class TableWidget(QtWidgets.QTableWidget):
         """
         super(TableWidget, self).__init__()
 
-        # Data # TODO: COnsider using "orientation" property
+        # Data # TODO: Consider using "orientation" property
         self.header_type = 'horizontal'  # useful for reference as to the orientation of header
 
         # Initial rows/columns
@@ -45,6 +46,13 @@ class TableWidget(QtWidgets.QTableWidget):
         # Default functionality
         self.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.customContextMenuRequested.connect(self.display_right_click_menu)
+
+    def sizeHint(self):
+        horizontal = self.horizontalHeader()
+        vertical = self.verticalHeader()
+        frame = self.frameWidth() * 2
+        return QSize(horizontal.length() + vertical.width() + frame,
+                     vertical.length() + horizontal.height() + frame)
 
     def display_right_click_menu(self, pos):
         """ implement menu in subclass """
@@ -94,6 +102,7 @@ class TableWidget(QtWidgets.QTableWidget):
         :param header_name: *(str)* name of header
         :return:
         """
+        print('column?')
         for idx in range(self.columnCount()):
             item = self.horizontalHeaderItem(idx)
             if item.text() == header_name:

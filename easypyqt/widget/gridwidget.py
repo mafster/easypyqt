@@ -43,7 +43,7 @@ class GridWidget(QtWidgets.QWidget):
         for key, value in data.items():
 
             entry_widget = QtWidgets.QLabel(str(value))
-            col = self.get_column_from_header_()
+            col = self.get_column_from_header()
 
             self.layout.addWidget(entry_widget, row=row, column=col)
 
