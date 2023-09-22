@@ -166,7 +166,7 @@ class TableWidget(QtWidgets.QTableWidget):
         :param data:    *(dict(dict))*
         :return:
         """
-        for key, value in data.keys():
+        for key, value in data.KEYS:
             self.add_row(value)
 
     def clear(self):
