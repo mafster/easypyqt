@@ -14,7 +14,7 @@ class LoginWidget(basicwidget.BasicWidget):
     loginResult = QtCore.pyqtSignal(object)
 
     def __init__(self, login_process: Callable[[str, str], Any]):
-        super(LoginWidget, self).__init__(vertical=False)
+        super(LoginWidget, self).__init__(vertical=True)
         self.login_process = login_process
 
         self.email_field = FieldWidget(label='Email')

@@ -1,44 +1,48 @@
+from typing import Optional
+
 from PyQt5 import QtWidgets
+from PyQt5.QtGui import QIcon, QGuiApplication
 
 from easypyqt.dialog import basicdialog
+from unipipegui import icon
 
 
 class InfoDialog(basicdialog.BasicDialog):
 
-    def __init__(self, title: str = None, message: str = None, vertical: bool = True, auto_exec: bool = False, exception: Exception = None):
+    def __init__(self, title: str = None, message: str = None, vertical: bool = True, auto_exec: bool = False,
+                 copy_button: bool = True):
         super(InfoDialog, self).__init__(vertical=vertical, auto_exec=False)
 
         self.title = title or 'Info'
-        self.message = message or '..'
-        self.exception = exception
-
-        if exception:
-            self.message += self.build_error_message(exception)
+        self.message = message or ''
 
         self.messageLabel = QtWidgets.QLabel(self.message)
 
         self.basic_layout.addWidget(self.messageLabel)
+
+        if copy_button:
+            # TODO: This is easypyqt
+            self.copy_button = QtWidgets.QPushButton(QIcon(str(icon.get_icon('clipboard_copy'))), 'Copy')
+            self.basic_layout.addWidget(self.copy_button)
+            self.copy_button.clicked.connect(self.copy_message_to_clipboard)
 
         self.setWindowTitle(self.title)
 
         if auto_exec:
             self.exec_()
 
-    @staticmethod
-    def build_error_message(exception):
-        return '\n\nException:\n\n\tType: {}\n\n\tInfo: {}\n'.format(type(exception), str(exception))
+    def copy_message_to_clipboard(self):
+        cb = QGuiApplication.clipboard()
+        cb.clear(mode=cb.Clipboard)
+        cb.setText(self.message, mode=cb.Clipboard)
 
-    def pop(self, message=None):
+    def pop(self, message: Optional[str] = None):
         """
         quick popup message  and call exec_
         :param message: *(str)* message to display. If None will take original message
         :return:
         """
-        msg = str(message)
-
-        if self.exception:
-            msg += self.build_error_message(self.exception)
-
-        self.messageLabel.setText(msg)
+        self.message = message
+        self.messageLabel.setText(message)
 
         self.exec_()

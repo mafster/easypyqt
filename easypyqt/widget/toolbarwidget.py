@@ -7,7 +7,7 @@ class ToolBarWidget(QtWidgets.QToolBar):
     def __init__(self, *args):
         super(ToolBarWidget, self).__init__(*args)
 
-    def add_action_tool_button(self, name: str, icon_path: Path = None):
+    def add_action_tool_button(self, name: str, icon_path: Path = None) -> QtWidgets.QAction:
         """
         Add an action to the toolbar with a nice name and icon. Sets the objectName of the action to the name passed
         :param name:        *(str)* name of the action

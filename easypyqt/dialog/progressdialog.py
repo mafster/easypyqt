@@ -13,10 +13,12 @@ class ProgressDialog(QtWidgets.QProgressDialog):
         # self.progress_dialog = QtWidgets.QProgressDialog("Operation in progress.", "Cancel", 0, 0, self)
         self.setWindowModality(Qt.WindowModal)
         self.setWindowTitle("Please Wait")
-        # self.progressBar = QProgressBar(self)
-        # self.progressBar.setRange(0, 1)
+        # self.progressBar = QProgressBar()
+        # self.progressBar.setRange(0, 100)
+        # self.layout().addWidget(self.progressBar)
         self.setCancelButton(None)  # Disallow canceling
-        self.setRange(0, 1)  # Spinner mode (not a progress bar)
+        self.setRange(0, 100)  # Spinner mode (not a progress bar)
+        self.setMinimumDuration(3000)
         self.close()  # Start out hidden
 
     def show(self, title: Optional[str] = None) -> None:
