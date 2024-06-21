@@ -4,7 +4,6 @@ from easypyqt.dialog import basicdialog
 
 
 class TextInputDialog(basicdialog.BasicDialog):
-
     textEntered = QtCore.pyqtSignal(str)
 
     def __init__(self, title=None, message=None, placeholder_text=None, vertical=True, width=None, auto_exec=False):
@@ -46,8 +45,10 @@ class TextInputDialog(basicdialog.BasicDialog):
 if __name__ == '__main__':
     import sys
     from PyQt5 import QtWidgets
+
     app = QtWidgets.QApplication(sys.argv)
 
-    pd = TextInputDialog(title='Input', message='Please type something..', placeholder_text='..anything..', auto_exec=True)
+    pd = TextInputDialog(title='Input', message='Please type something..', placeholder_text='..anything..',
+                         auto_exec=True)
 
     sys.exit(app.exec_())

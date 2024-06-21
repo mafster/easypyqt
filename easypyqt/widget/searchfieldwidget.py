@@ -1,4 +1,5 @@
 from PyQt5 import QtWidgets, QtCore
+from PyQt5.QtCore import Qt
 
 
 class SearchFieldWidget(QtWidgets.QLineEdit):
@@ -26,8 +27,8 @@ class SearchFieldWidget(QtWidgets.QLineEdit):
 
         completer = QtWidgets.QCompleter()
         completer.setModel(model)
-        completer.setFilterMode(QtCore.Qt.MatchContains)
-        completer.setCaseSensitivity(QtCore.Qt.CaseInsensitive)
+        completer.setFilterMode(Qt.MatchContains)
+        completer.setCaseSensitivity(Qt.CaseInsensitive)
         
         self.setCompleter(completer)
 

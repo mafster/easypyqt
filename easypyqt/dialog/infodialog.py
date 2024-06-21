@@ -4,7 +4,6 @@ from PyQt5 import QtWidgets
 from PyQt5.QtGui import QIcon, QGuiApplication
 
 from easypyqt.dialog import basicdialog
-from unipipegui import icon
 
 
 class InfoDialog(basicdialog.BasicDialog):
@@ -22,7 +21,7 @@ class InfoDialog(basicdialog.BasicDialog):
 
         if copy_button:
             # TODO: This is easypyqt
-            self.copy_button = QtWidgets.QPushButton(QIcon(str(icon.get_icon('clipboard_copy'))), 'Copy')
+            self.copy_button = QtWidgets.QPushButton(QIcon(str('clipboard_copy')), 'Copy')
             self.basic_layout.addWidget(self.copy_button)
             self.copy_button.clicked.connect(self.copy_message_to_clipboard)
 

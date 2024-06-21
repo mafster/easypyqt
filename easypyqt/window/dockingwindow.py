@@ -1,4 +1,6 @@
-from PyQt5 import QtCore, QtWidgets
+from PyQt5 import QtWidgets
+from PyQt5.QtCore import Qt
+
 from easypyqt.window import mainwindow
 
 _DOCK_OPTS = QtWidgets.QMainWindow.AnimatedDocks
@@ -11,5 +13,5 @@ class DockingWindow(mainwindow.MainWindow):
     def __init__(self, name='dockingWindow', title=None):
         super(DockingWindow, self).__init__(name=name, title=title)
 
-        self.setWindowFlags(QtCore.Qt.Widget)
+        self.setWindowFlags(Qt.Widget)
         self.setDockOptions(_DOCK_OPTS)

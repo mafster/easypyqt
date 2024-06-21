@@ -1,4 +1,5 @@
-from PyQt5 import QtWidgets, QtGui, QtCore
+from PyQt5 import QtWidgets, QtGui
+from PyQt5.QtCore import Qt
 
 from easypyqt.widget import basicwidget
 
@@ -29,13 +30,13 @@ class ScrollableListWidget(basicwidget.BasicWidget):
         self.scrollArea.setBackgroundRole(QtGui.QPalette.Dark)
         self.basic_layout.addWidget(self.scrollArea)
 
-        self.scrollArea.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
-        self.scrollArea.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
+        self.scrollArea.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
+        self.scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAsNeeded)
 
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setWidget(self.listWidget)
 
-        self.listWidget.basic_layout.setAlignment(QtCore.Qt.AlignTop)
+        self.listWidget.basic_layout.setAlignment(Qt.AlignTop)
 
     def add_item(self, widget):
         """

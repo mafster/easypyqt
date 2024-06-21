@@ -1,7 +1,7 @@
 from typing import Optional
 
 from PyQt5 import QtWidgets, QtCore, QtGui
-from PyQt5.QtCore import Qt, QEvent, QTimer, QAbstractAnimation
+from PyQt5.QtCore import Qt, QEvent, QTimer, QPropertyAnimation
 from PyQt5.QtWidgets import QStyle, QWidget
 
 
@@ -37,7 +37,7 @@ class Toaster(QtWidgets.QFrame):
             self.parent().installEventFilter(self)
         else:
             # there's no parent, use the window opacity property, assuming that
-            # the window manager supports it; if it doesn't, this won'd do
+            # the window manager supports it; if it doesn't, this won't do
             # anything (besides making the hiding a bit longer by half a second)
             self.opacity_ani = QtCore.QPropertyAnimation(self, b'windowOpacity')
         self.opacity_ani.setStartValue(0.)
@@ -50,7 +50,7 @@ class Toaster(QtWidgets.QFrame):
 
     def check_closed(self):
         # if we have been fading out, we're closing the notification
-        if self.opacity_ani.direction() == self.opacity_ani.Backward:
+        if self.opacity_ani.direction() == QPropertyAnimation.Backward:
             self.close()
 
     def restore(self):
@@ -68,7 +68,7 @@ class Toaster(QtWidgets.QFrame):
 
     def hide(self):
         # start hiding
-        self.opacity_ani.setDirection(self.opacity_ani.Backward)
+        self.opacity_ani.setDirection(QPropertyAnimation.Backward)
         self.opacity_ani.setDuration(500)
         self.opacity_ani.start()
 
@@ -166,7 +166,7 @@ def show_message(parent: QWidget, message: str,
 
     toaster.timer.setInterval(timeout)
 
-    # use Qt standard icon pixmaps; see:
+    # use Qt standard icon pix-maps; see:
     # https://doc.qt.io/qt-5/qstyle.html#StandardPixmap-enum
     if isinstance(icon, QtWidgets.QStyle.StandardPixmap):
         label_icon = QtWidgets.QLabel()

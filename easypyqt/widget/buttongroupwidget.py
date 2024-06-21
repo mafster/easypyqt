@@ -24,7 +24,7 @@ class ButtonGroupWidget(basicwidget.BasicWidget):
         :param button_list:     *(list(tuple))* list of string tuples. [(name, label)]
         :param label:           *(str)* visible label or "title" for the button group
         :param vertical:        *(bool)* if True will lay buttons out vertically
-        :param exclusive:       *(bool)* if True will highlight button clicked and ghost the rest. Button can be accessed
+        :param exclusive:       *(bool)* if True will highlight button clicked and ghost the rest
                                 via get_exclusive_button() or get_exclusive_button_name()
         :param exclusive_color  *(str)* hex colour to use if exclusive option is True
         """

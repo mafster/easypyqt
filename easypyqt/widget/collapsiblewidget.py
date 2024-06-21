@@ -12,7 +12,7 @@ class CollapsibleWidget(basicwidget.BasicWidget):
         self.length = length
 
         # Widget
-        self.header_widget = HeaderWidget(vertical=not vertical)
+        self.header_widget = basicwidget.BasicWidget(vertical=not vertical)
         self.panel_widget = basicwidget.BasicWidget(vertical=panel_vertical_layout)
 
         # Layout

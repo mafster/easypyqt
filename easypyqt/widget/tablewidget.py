@@ -1,5 +1,5 @@
-from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtCore import QSize
+from PyQt5 import QtWidgets
+from PyQt5.QtCore import QSize, Qt
 
 
 class TableWidget(QtWidgets.QTableWidget):
@@ -9,7 +9,11 @@ class TableWidget(QtWidgets.QTableWidget):
     # TODO: Add support for lists
     """
 
-    def __init__(self, rows: int = None, columns: int = None, horizontal_header_list: list[str] = None, vertical_header_list: list[str] = None):
+    def __init__(self,
+                 rows: int = None,
+                 columns: int = None,
+                 horizontal_header_list: list[str] = None,
+                 vertical_header_list: list[str] = None):
         """
 
         :param rows:                    *(int)* number of rows
@@ -30,21 +34,21 @@ class TableWidget(QtWidgets.QTableWidget):
         if horizontal_header_list:
             self.header_type = 'horizontal'
             self.add_horizontal_header_list(horizontal_header_list)
-            #self.horizontalHeader().setStretchLastSection(True)
+            # self.horizontalHeader().setStretchLastSection(True)
         else:
             self.horizontalHeader().setVisible(False)
 
         if vertical_header_list:
             self.header_type = 'vertical'
             self.add_vertical_header_list(vertical_header_list)
-            #self.verticalHeader().setStretchLastSection(False)
-            #self.verticalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Fixed)
-            #self.verticalHeader().setDefaultSectionSize(24)
+            # self.verticalHeader().setStretchLastSection(False)
+            # self.verticalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Fixed)
+            # self.verticalHeader().setDefaultSectionSize(24)
         else:
             self.verticalHeader().setVisible(False)
 
         # Default functionality
-        self.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+        self.setContextMenuPolicy(Qt.CustomContextMenu)
         self.customContextMenuRequested.connect(self.display_right_click_menu)
 
     def sizeHint(self):
@@ -177,7 +181,6 @@ class TableWidget(QtWidgets.QTableWidget):
 
 
 if __name__ == '__main__':
-
     import sys
     import collections
 
@@ -191,7 +194,7 @@ if __name__ == '__main__':
     dat['project'] = 'test_project'
     dat['resource_type'] = 'component'
 
-    tab = TableWidget(vertical_header_list=dat.keys())
+    tab = TableWidget(vertical_header_list=list(dat.keys()))
     tab.show()
     tab.add_column(dat)
 

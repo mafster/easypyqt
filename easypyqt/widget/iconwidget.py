@@ -26,7 +26,7 @@ class IconWidget(basicwidget.BasicWidget):
         self.icon = QtWidgets.QLabel()
 
         # Formatting
-        #self.icon.setGeometry(width, height, 0, 0)
+        # self.icon.setGeometry(width, height, 0, 0)
 
         # Layout
         self.basic_layout.addWidget(self.icon)
@@ -42,7 +42,7 @@ class IconWidget(basicwidget.BasicWidget):
         :return:
         """
         if not icon_path.is_file():
-            # Skip if path doesnt exist and make icon invisible
+            # Skip if path doesn't exist and make icon invisible
             self.icon.setVisible(False)
             return
 

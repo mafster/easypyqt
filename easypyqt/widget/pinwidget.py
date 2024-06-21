@@ -28,9 +28,9 @@ class PinWidget(basicwidget.BasicWidget):
 
             i += 1
 
-    def process_pins(self, value):
+    def process_pins(self, _):
 
-        int_widget = self.sender().parent()
+        int_widget: IntegerWidget = self.sender().parent()
 
         if not int_widget.get_integer():
             return
@@ -95,5 +95,5 @@ if __name__ == '__main__':
 
     wdg = PinWidget(count=4, width=80, height=100, font_size=60)
     wdg.show()
-
+    wdg.completedPin.connect(lambda x: print(x))
     sys.exit(app.exec_())

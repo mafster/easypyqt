@@ -1,17 +1,19 @@
-from PyQt5 import QtWidgets, QtCore
+from PyQt5 import QtWidgets
+from PyQt5.QtCore import Qt
+
 from easypyqt.widget import basicwidget
 
 
 class MainWindow(QtWidgets.QMainWindow):
 
-    def __init__(self, name=None, title=None, vertical=True, fixedWidth=None, fixedHeight=None):
+    def __init__(self, name=None, title=None, vertical=True, fixed_width=None, fixed_height=None):
         """
 
         :param name:
         :param title:
         :param vertical:
-        :param fixedWidth:
-        :param fixedHeight:
+        :param fixed_width:
+        :param fixed_height:
         """
 
         super(MainWindow, self).__init__()
@@ -19,7 +21,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.title = title
 
         if name is None:
-            name = 'mainWindow'
+            name = 'MainWindow'
 
         self.name = str(name)
 
@@ -35,12 +37,12 @@ class MainWindow(QtWidgets.QMainWindow):
         self.basic_layout = self.mainWidget.layout  # overrides self.layout builtin method
 
         # fixed heights
-        if fixedWidth:
-            self.setFixedWidth(int(fixedWidth))
-        if fixedHeight:
-            self.setFixedWidth(int(fixedHeight))
+        if fixed_width:
+            self.setFixedWidth(int(fixed_width))
+        if fixed_height:
+            self.setFixedWidth(int(fixed_height))
 
-        self.setWindowFlags(QtCore.Qt.Window)
+        self.setWindowFlags(Qt.Window)
 
 
 if __name__ == '__main__':
